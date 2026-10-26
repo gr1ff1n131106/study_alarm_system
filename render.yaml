@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: anna-study-alarm
+    env: python
+    region: singapore
+    plan: free
+    buildCommand: bash build.sh
+    startCommand: bash start.sh
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: TELEGRAM_BOT_TOKEN
+        value: 8924081788:AAHRqaocjH_sl0SP7-fKBWc7csEm6it_sh0
