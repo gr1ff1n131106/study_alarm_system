@@ -1,8 +1,24 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.contrib import messages
+from django.http import JsonResponse, HttpResponse
 from alarms.models import StudySlot, ChallengeCountdown, AlarmSession, BotSubscriber
 from alarms.telegram_service import send_alarm_to_all
+
+
+def health_check_view(request):
+    """Simple health check endpoint for monitoring/keep-alive services."""
+    return JsonResponse({"status": "ok", "app": "anna-study-alarm"})
+
+
+def favicon_view(request):
+    """Returns an inline SVG favicon so browsers do not 404 on /favicon.ico."""
+    svg = (
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">'
+        '<text y=".9em" font-size="90">⏰</text>'
+        '</svg>'
+    )
+    return HttpResponse(svg, content_type="image/svg+xml")
 
 
 def dashboard_view(request):

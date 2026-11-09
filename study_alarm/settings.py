@@ -3,11 +3,16 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-9fx@@kin2*%=a56(m_t4jw0*_xsz2#96ji2duqb(9bdwm04+ne'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-9fx@@kin2*%=a56(m_t4jw0*_xsz2#96ji2duqb(9bdwm04+ne')
 
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() in ('true', '1')
 
 ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://study-alarm-system.onrender.com',
+    'https://*.onrender.com',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
